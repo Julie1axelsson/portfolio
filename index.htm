@@ -1,574 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juliette Axelsson | UX/UI Designer</title>
+    <title>Juliette Axelsson | CV</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#f5f2f0',
+                        foreground: '#2d2a26',
+                        secondary: '#e8e0d8',
+                        accent: '#cc5f36',
+                        'muted-foreground': '#6b5b5b',
+                        'card-bg': '#ffffff',
+                        'card-border': '#e5ddd5',
+                        border: '#d4c8c0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --background: #f5f2f0;
-            --foreground: #2d2a26;
-            --secondary: #e8e0d8;
-            --accent: #cc5f36;
-            --muted-foreground: #6b5b5b;
-            --card-bg: #ffffff;
-            --card-border: #e5ddd5;
-            --border: #d4c8c0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background);
-            color: var(--foreground);
-            line-height: 1.6;
-        }
-
-        /* Header Styles */
-        header {
-            background: var(--background);
-            padding: 1.5rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo {
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-        }
-
-        nav {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-button {
-            background: none;
-            border: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--foreground);
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: color 0.15s ease;
-        }
-
-        .nav-button:hover {
-            color: var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: var(--secondary);
-            padding: 4rem 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .arch-frame {
-            position: relative;
-            width: 350px;
-            height: 350px;
-            border-radius: 50% 50% 0 0;
-            overflow: visible;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-        }
-
-        .arch-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50% 50% 0 0;
-        }
-
-        .juliette-text {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 6rem;
+        .cv-section-title {
+            text-transform: uppercase;
             font-weight: 700;
-            color: var(--accent);
-            z-index: 10;
-        }
-
-        .hero h2 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.25rem;
-            color: var(--muted-foreground);
-            margin-bottom: 2rem;
-        }
-
-        .hero-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .tagline {
-            font-size: 1.125rem;
+            letter-spacing: 0.05em;
             margin-bottom: 1rem;
         }
 
-        .cta-button {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: opacity 0.15s ease;
-        }
-
-        .cta-button:hover {
-            opacity: 0.9;
-        }
-
-        /* Featured Case Studies */
-        .case-studies {
-            background: var(--background);
-            padding: 4rem 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.875rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .case-studies-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            max-width: 56rem;
-            margin: 0 auto;
-        }
-
-        .case-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .case-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .case-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .case-year {
-            color: var(--accent);
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .case-platform {
-            color: var(--muted-foreground);
-            font-size: 0.875rem;
-        }
-
-        .case-image {
-            width: 100%;
-            height: 12rem;
-            object-fit: cover;
-            border-radius: 0.375rem;
-            margin-bottom: 1rem;
-        }
-
-        .case-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .case-description {
-            color: var(--muted-foreground);
-            margin-bottom: 1rem;
-        }
-
-        .view-project-button {
-            background: none;
-            border: none;
-            color: var(--accent);
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--secondary);
-            padding: 4rem 1.5rem;
-        }
-
-        .about-content {
-            max-width: 56rem;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .about p {
-            color: var(--muted-foreground);
-            margin-bottom: 1rem;
-        }
-
-        .skills {
-            margin-top: 1.5rem;
-        }
-
-        .skills h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-badge {
-            background: var(--background);
-            color: var(--foreground);
-            padding: 0.25rem 0.625rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border: 1px solid var(--border);
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--foreground);
-            color: var(--background);
-            padding: 4rem 1.5rem;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            background: var(--accent);
-            width: 4rem;
-            height: 4rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-button {
-            background: none;
-            border: none;
-            color: var(--background);
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: color 0.15s ease;
-        }
-
-        .contact-button:hover {
-            color: var(--accent);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--background);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            color: var(--muted-foreground);
-            border-top: 1px solid var(--border);
-        }
-
-        /* Responsive Design */
-        @media (min-width: 768px) {
-            header {
-                padding: 1.5rem 3rem;
-            }
-
-            .hero, .case-studies, .about, .contact {
-                padding: 4rem 3rem;
-            }
-
-            .case-studies-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .about-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .juliette-text {
-                font-size: 8rem;
-            }
-
-            footer {
-                padding: 2rem 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .arch-frame {
-                width: 300px;
-                height: 300px;
-            }
-
-            .juliette-text {
-                font-size: 4rem;
-            }
-
-            .hero h2 {
-                font-size: 1.875rem;
-            }
-
-            nav {
-                gap: 1rem;
-            }
-
-            .nav-button {
-                font-size: 0.75rem;
-                padding: 0.25rem 0.5rem;
-            }
-        }
-
-        /* Arrow Icon */
-        .arrow-right {
-            width: 1rem;
-            height: 1rem;
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
             stroke: currentColor;
             stroke-width: 2;
             fill: none;
-        }
-
-        .mail-icon {
-            width: 2rem;
-            height: 2rem;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="logo">UX/UI Designer</div>
-        <nav>
-            <button class="nav-button">CV</button>
-            <button class="nav-button">LINKEDIN</button>
-            <button class="nav-button">E-MAIL</button>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <div class="arch-frame">
-                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.partyking.org%2Ffit-in%2F1300x0%2Fproducts%2Foriginal%2Fkartongfigur-greta-gris-1.jpg&f=1&nofb=1&ipt=9ad59775c3a2052a7c7bde4eff9effac0bebf255d9348848a6ba50e5cac578c1">
-                    <h1 class="juliette-text">JULIETTE</h1>
-                </div>
-                <h2>AXELSSON</h2>
-                <p class="subtitle">UX/UI Designer</p>
-            </div>
-            <div class="hero-bottom">
-                <p class="tagline">I refine, I relate</p>
-                <button class="cta-button">
-                    <span>More about me</span>
-                    <svg class="arrow-right" viewBox="0 0 24 24">
-                        <path d="M5 12h14"></path>
-                        <path d="m12 5 7 7-7 7"></path>
-                    </svg>
-                </button>
-            </div>
-        </section>
-
-        <!-- Featured Case Studies -->
-        <section class="case-studies">
-            <h2 class="section-title">FEATURED CASE STUDIES</h2>
-            <div class="case-studies-grid">
-                <div class="case-card">
-                    <div class="case-header">
-                        <span class="case-year">2025</span>
-                        <span class="case-platform">MOBILE • WEB</span>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="E-commerce App Redesign" class="case-image">
-                    <h3 class="case-title">E-commerce App Redesign</h3>
-                    <p class="case-description">Revolutionizing the shopping experience with intuitive navigation and seamless checkout.</p>
-                    <button class="view-project-button">
-                        <span>View project</span>
-                        <svg class="arrow-right" viewBox="0 0 24 24">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="case-card">
-                    <div class="case-header">
-                        <span class="case-year">2024</span>
-                        <span class="case-platform">MOBILE</span>
-                    </div>
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=200&fit=crop" alt="Health & Wellness Tracker" class="case-image">
-                    <h3 class="case-title">Health & Wellness Tracker</h3>
-                    <p class="case-description">Personalized health journey with data visualization and motivational features.</p>
-                    <button class="view-project-button">
-                        <span>View project</span>
-                        <svg class="arrow-right" viewBox="0 0 24 24">
-                            <path d="M5 12h14"></path>
-                            <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="about" id="about">
-            <div class="about-content">
-                <div>
-                    <h2>About Me</h2>
-                    <p>With over 7 years of experience in UX design and photography, I bridge the gap between aesthetics and functionality.</p>
-                    <p>My approach combines human-centered design principles with a photographer's eye for detail, creating digital experiences that are both beautiful and intuitive.</p>
-                    <p>When I'm not designing interfaces or capturing moments, you can find me exploring nature trails or experimenting with film photography.</p>
-                    
-                    <div class="skills">
-                        <h3>Skills & Expertise</h3>
-                        <div class="skills-list">
-                            <span class="skill-badge">User Experience Design</span>
-                            <span class="skill-badge">User Interface Design</span>
-                            <span class="skill-badge">User Research & Testing</span>
-                            <span class="skill-badge">Prototyping & Wireframing</span>
-                            <span class="skill-badge">Design Systems</span>
-                            <span class="skill-badge">Photography</span>
-                            <span class="skill-badge">Creative Direction</span>
-                            <span class="skill-badge">Stakeholder Management</span>
+<body class="bg-background text-foreground font-sans">
+    
+    <!-- CV Container -->
+    <div class="max-w-6xl mx-auto p-8 md:p-16">
+        <div class="bg-card-bg rounded-xl shadow-lg border border-card-border">
+            <div class="grid grid-cols-1 lg:grid-cols-3">
+                <!-- Left Sidebar -->
+                <aside class="lg:col-span-1 border-r border-card-border p-8">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="relative w-48 h-48 rounded-full overflow-hidden shadow-lg border border-border mb-4">
+                            <img src="https://placehold.co/500x500/e8e0d8/cc5f36?text=Juliette" alt="Portrait of Juliette Axelsson" class="w-full h-full object-cover">
                         </div>
+                        <h1 class="text-4xl font-bold text-foreground">Juliette Axelsson</h1>
+                        <p class="text-lg text-muted-foreground mt-1">UX/UI-designer</p>
                     </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=400&fit=crop" alt="Juliette working">
-                </div>
+                    
+                    <div class="mt-8">
+                        <!-- Kontakt -->
+                        <section class="mb-8">
+                            <h2 class="cv-section-title text-xl border-b border-border pb-2">Kontakt</h2>
+                            <div class="mt-4">
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-3">
+                                        <svg class="icon text-accent" viewBox="0 0 24 24">
+                                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-3.67-2.95 19.5 19.5 0 0 1-2.95-3.67A19.79 19.79 0 0 1 2 4.18 2 2 0 0 1 4.18 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                        </svg>
+                                        <p class="text-muted-foreground">076-8780167</p>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <svg class="icon text-accent" viewBox="0 0 24 24">
+                                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                        <p class="text-muted-foreground">julietteaxelsson@hotmail.com</p>
+                                    </li>
+                                    <li class="flex items-center gap-3">
+                                        <svg class="icon text-accent" viewBox="0 0 24 24">
+                                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                            <rect x="2" y="9" width="4" height="12"></rect>
+                                            <circle cx="4" cy="4" r="2"></circle>
+                                        </svg>
+                                        <a href="https://linkedin.com/in/juliette-axelsson" target="_blank" class="text-muted-foreground hover:text-accent transition-colors">linkedin.com/in/juliette-axelsson</a>
+                                    </li>
+                                </ul>
+                                <p class="text-muted-foreground italic text-sm mt-4">Referenser lämnas på förfrågan.</p>
+                            </div>
+                        </section>
+        
+                        <!-- Om Mig -->
+                        <section>
+                            <h2 class="cv-section-title text-xl border-b border-border pb-2">Lite om mig</h2>
+                            <div class="mt-4">
+                                <p class="text-muted-foreground leading-relaxed">Driven och mångsidig UX-designer med bakgrund inom både mänskliga möten och kreativt skapande. Genom arbete inom sjukvård och restaurang har jag utvecklat en stark förståelse för människors behov, beteenden och upplevelser, insikter som jag idag använder för att skapa användarvänliga och tillgängliga digitala lösningar.</p>
+                                <p class="text-muted-foreground leading-relaxed mt-4">Min flexibilitet och nyfikenhet gör att jag snabbt anpassar mig till nya utmaningar och bidrar med både engagemang och lösningsfokuserat tänkande.</p>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+        
+                <!-- Right Content -->
+                <main class="lg:col-span-2 p-8">
+                    <!-- Arbetslivserfarenhet -->
+                    <section class="mb-12">
+                        <h2 class="cv-section-title text-2xl border-b border-border pb-2">Arbetslivserfarenhet</h2>
+                        <div class="mt-4">
+                            <ul class="space-y-6">
+                                <li>
+                                    <h3 class="font-semibold text-lg">Tandsköterska</h3>
+                                    <p class="text-muted-foreground text-sm">Folktandvården Seminariet | Juli 2023, Mars 2024 - September 2024</p>
+                                </li>
+                                <li>
+                                    <h3 class="font-semibold text-lg">Barnskötare</h3>
+                                    <p class="text-muted-foreground text-sm">Karlstad Kommun | Oktober 2019 - Augusti 2021</p>
+                                </li>
+                                <li>
+                                    <h3 class="font-semibold text-lg">Restaurangbiträde</h3>
+                                    <p class="text-muted-foreground text-sm">Restaurang Kasernhöjden | Maj 2017 - Oktober 2019</p>
+                                </li>
+                                <li>
+                                    <h3 class="font-semibold text-lg">Restaurangbiträde</h3>
+                                    <p class="text-muted-foreground text-sm">Värmlands Rasta | 2013 - 2015</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+        
+                    <!-- Akademisk Bakgrund -->
+                    <section>
+                        <h2 class="cv-section-title text-2xl border-b border-border pb-2">Akademisk bakgrund</h2>
+                        <div class="mt-4">
+                            <ul class="space-y-6">
+                                <li>
+                                    <h3 class="font-semibold text-lg">Experience Design</h3>
+                                    <p class="text-muted-foreground text-sm">Futuregames Karlstad | Pågående</p>
+                                </li>
+                                <li>
+                                    <h3 class="font-semibold text-lg">Tandsköterska</h3>
+                                    <p class="text-muted-foreground text-sm">Folkuniversitetet Uppsala</p>
+                                </li>
+                                <li>
+                                    <h3 class="font-semibold text-lg">Beteendevetenskap</h3>
+                                    <p class="text-muted-foreground text-sm">Stensunds Folkhögskola</p>
+                                </li>
+                                <li>
+                                    <h3 class="font-semibold text-lg">Estetik och Media</h3>
+                                    <p class="text-muted-foreground text-sm">Fria Läroverken Gymnasium</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </main>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact">
-            <div>
-                <h2>CONTACT ME!</h2>
-                <div class="contact-icon">
-                    <svg class="mail-icon" viewBox="0 0 24 24">
-                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                </div>
-                <div class="contact-links">
-                    <p><button class="contact-button">JULIETTEAXELSSON@HOTMAIL.COM</button></p>
-                    <p><button class="contact-button">LINKEDIN.COM/IN/JULIETTE-AXELSSON</button></p>
-                </div>
-            </div>
-        </section>
-    </main>
-
+        </div>
+    </div>
+    
     <!-- Footer -->
-    <footer>
-        <p>© 2023 Juliette Axelsson. All rights reserved.</p>
+    <footer class="bg-background p-8 md:p-12 text-center text-muted-foreground border-t border-border mt-8">
+        <p class="text-sm">&copy; 2023 Juliette Axelsson. Alla rättigheter reserverade.</p>
     </footer>
 
-    <script>
-        // Simple scroll to about section functionality
-        document.querySelector('.cta-button').addEventListener('click', function() {
-            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Contact button functionality
-        document.querySelector('.contact-button').addEventListener('click', function() {
-            window.location.href = 'mailto:julietteaxelsson@hotmail.com';
-        });
-
-        document.querySelectorAll('.contact-button')[1].addEventListener('click', function() {
-            window.open('https://linkedin.com/in/juliette-axelsson', '_blank');
-        });
-    </script>
 </body>
 </html>
+
 
 
 
