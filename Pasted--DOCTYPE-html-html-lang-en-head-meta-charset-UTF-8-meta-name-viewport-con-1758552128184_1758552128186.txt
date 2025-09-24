@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juliette Axelsson | UX Designer & Photographer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #3A3226;
+            background-color: #F9F5F0;
+        }
+        
+        .arch-frame {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50% 50% 0 0;
+            overflow: hidden;
+            border: 8px solid #E8D8C8;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            border: 1px solid #E8D8C8;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .text-primary {
+            color: #3A3226;
+        }
+        
+        .text-secondary {
+            color: #8C6A56;
+        }
+        
+        .bg-primary {
+            background-color: #F9F5F0;
+        }
+        
+        .bg-secondary {
+            background-color: #E8D8C8;
+        }
+        
+        .bg-accent {
+            background-color: #D4A373;
+        }
+        
+        .bg-dark {
+            background-color: #6B4F3E;
+        }
+        
+        .border-accent {
+            border-color: #D4A373;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-primary py-6 px-6 lg:px-12 flex justify-between items-center sticky top-0 z-50 shadow-sm">
+        <div class="text-lg font-medium text-primary">UX DESIGNER & PHOTOGRAPHER</div>
+        <nav class="flex space-x-6">
+            <a href="#" class="text-primary hover:text-accent transition">CV</a>
+            <a href="#" class="text-primary hover:text-accent transition">LINKEDIN</a>
+            <a href="#" class="text-primary hover:text-accent transition">E-MAIL</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-secondary py-16 px-6 lg:px-12 flex flex-col items-center">
+        <div class="arch-frame mb-8">
+            <img src="http://static.photos/people/640x360/101" alt="Juliette Axelsson" class="w-full h-full object-cover">
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-bold text-primary mb-2" data-aos="fade-up">JULIETTE AXELSSON</h1>
+        <p class="text-xl text-secondary mb-8" data-aos="fade-up" data-aos-delay="100">UX Designer & Photographer</p>
+        <a href="#about" class="bg-accent text-white px-8 py-3 rounded-full flex items-center space-x-2 hover:bg-opacity-90 transition" data-aos="fade-up" data-aos-delay="200">
+            <span>I refine, I relate</span>
+            <span>More about me</span>
+            <i data-feather="arrow-right"></i>
+        </a>
+    </section>
+
+    <!-- Featured Case Studies -->
+    <section class="bg-primary py-16 px-6 lg:px-12">
+        <h2 class="text-3xl font-bold text-center text-primary mb-12">FEATURED CASE STUDIES</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Project 1 -->
+            <div class="project-card bg-white p-6 rounded-lg" data-aos="fade-up">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-accent font-medium">2025</span>
+                    <span class="text-secondary">MOBILE · WEB</span>
+                </div>
+                <img src="http://static.photos/technology/640x360/1" alt="Project 1" class="w-full h-48 object-cover rounded mb-4">
+                <h3 class="text-xl font-bold text-primary mb-2">E-commerce App Redesign</h3>
+                <p class="text-secondary mb-4">Revolutionizing the shopping experience with intuitive navigation and seamless checkout.</p>
+                <a href="#" class="text-accent flex items-center space-x-1">
+                    <span>View project</span>
+                    <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card bg-white p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-accent font-medium">2024</span>
+                    <span class="text-secondary">MOBILE</span>
+                </div>
+                <img src="http://static.photos/technology/640x360/2" alt="Project 2" class="w-full h-48 object-cover rounded mb-4">
+                <h3 class="text-xl font-bold text-primary mb-2">Health & Wellness Tracker</h3>
+                <p class="text-secondary mb-4">Personalized health journey with data visualization and motivational features.</p>
+                <a href="#" class="text-accent flex items-center space-x-1">
+                    <span>View project</span>
+                    <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-secondary py-16 px-6 lg:px-12">
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-3xl font-bold text-primary mb-6">About Me</h2>
+                <p class="text-secondary mb-4">With over 7 years of experience in UX design and photography, I bridge the gap between aesthetics and functionality.</p>
+                <p class="text-secondary mb-4">My approach combines human-centered design principles with a photographer's eye for detail, creating digital experiences that are both beautiful and intuitive.</p>
+                <p class="text-secondary">When I'm not designing interfaces or capturing moments, you can find me exploring nature trails or experimenting with film photography.</p>
+            </div>
+            <div data-aos="fade-left" data-aos-delay="100">
+                <img src="http://static.photos/people/640x360/102" alt="Juliette working" class="w-full rounded-lg shadow-md">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="bg-dark py-16 px-6 lg:px-12 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">CONTACT ME!</h2>
+            <div class="flex justify-center mb-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-accent p-4 rounded-full">
+                    <i data-feather="mail" class="w-8 h-8"></i>
+                </div>
+            </div>
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="200">
+                <p><a href="mailto:julietteaxelsson@hotmail.com" class="hover:text-accent transition">JULIETTEAXELSSON@HOTMAIL.COM</a></p>
+                <p><a href="https://linkedin.com/in/juliette-axelsson" target="_blank" class="hover:text-accent transition">LINKEDIN.COM/IN/JULIETTE-AXELSSON</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary py-8 px-6 lg:px-12 text-center text-secondary">
+        <p>© 2023 Juliette Axelsson. All rights reserved.</p>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>
