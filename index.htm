@@ -1,454 +1,571 @@
-import React, { useState } from 'react';
-import { ArrowRight, Mail, ExternalLink } from 'lucide-react';
-
-// Component definitions
-const Button = ({ 
-  children, 
-  variant = 'default', 
-  size = 'default', 
-  className = '', 
-  onClick,
-  ...props 
-}) => {
-  const baseClasses = 'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
-  
-  const variants = {
-    default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-    outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-    ghost: 'hover:bg-accent hover:text-accent-foreground',
-    link: 'text-primary underline-offset-4 hover:underline'
-  };
-  
-  const sizes = {
-    default: 'h-10 px-4 py-2',
-    sm: 'h-9 rounded-md px-3',
-    lg: 'h-11 rounded-md px-8',
-    icon: 'h-10 w-10'
-  };
-  
-  return (
-    <button
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-      onClick={onClick}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
-
-const Card = ({ children, className = '' }) => (
-  <div className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className}`}>
-    {children}
-  </div>
-);
-
-const CardContent = ({ children, className = '' }) => (
-  <div className={`p-6 ${className}`}>
-    {children}
-  </div>
-);
-
-const Badge = ({ children, variant = 'default', className = '' }) => {
-  const variants = {
-    default: 'bg-primary text-primary-foreground hover:bg-primary/80',
-    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-    outline: 'text-foreground border border-input bg-background hover:bg-accent hover:text-accent-foreground'
-  };
-  
-  return (
-    <div className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors ${variants[variant]} ${className}`}>
-      {children}
-    </div>
-  );
-};
-
-// Header Component
-const Header = () => {
-  const handleNavClick = (action) => {
-    switch(action) {
-      case 'cv':
-        // Handle CV download/view
-        console.log('CV clicked');
-        break;
-      case 'linkedin':
-        // Handle LinkedIn navigation
-        window.open('https://linkedin.com/in/juliette-axelsson', '_blank');
-        break;
-      case 'email':
-        // Handle email action
-        window.location.href = 'mailto:julietteaxelsson@hotmail.com';
-        break;
-      default:
-        break;
-    }
-  };
-
-  return (
-    <header className="bg-background py-6 px-6 lg:px-12 flex justify-between items-center sticky top-0 z-50 shadow-sm border-b">
-      <div className="text-xs font-medium text-foreground tracking-wide">
-        UX DESIGNER & PHOTOGRAPHER
-      </div>
-      <nav className="flex space-x-6">
-        <Button 
-          variant="ghost" 
-          onClick={() => handleNavClick('cv')}
-          className="text-foreground hover:text-accent"
-        >
-          CV
-        </Button>
-        <Button 
-          variant="ghost" 
-          onClick={() => handleNavClick('linkedin')}
-          className="text-foreground hover:text-accent"
-        >
-          LINKEDIN
-        </Button>
-        <Button 
-          variant="ghost" 
-          onClick={() => handleNavClick('email')}
-          className="text-foreground hover:text-accent"
-        >
-          E-MAIL
-        </Button>
-      </nav>
-    </header>
-  );
-};
-
-// Hero Section Component
-const HeroSection = () => {
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ 
-      behavior: 'smooth' 
-    });
-  };
-
-  return (
-    <section className="bg-secondary py-16 px-6 lg:px-12 relative">
-      <div className="flex flex-col items-center">
-        <div className="arch-frame mb-8 relative">
-          <img
-            src="/api/placeholder/350/350"
-            alt="Juliette Axelsson"
-            className="w-full h-full object-cover rounded-t-full"
-          />
-          <h1 
-            className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 text-6xl lg:text-8xl font-bold text-center z-10"
-            style={{ color: 'rgb(204, 95, 54)' }}
-          >
-            JULIETTE
-          </h1>
-        </div>
-        
-        <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-          AXELSSON
-        </h2>
-        
-        <p className="text-xl text-muted-foreground mb-8">
-          UX Designer & Photographer
-        </p>
-      </div>
-      
-      <div className="flex flex-col items-end">
-        <div className="flex flex-col items-center">
-          <p className="text-lg text-foreground mb-4">
-            I refine, I relate
-          </p>
-          
-          <Button
-            onClick={scrollToAbout}
-            className="bg-accent text-white px-8 py-3 rounded-full hover:bg-opacity-90"
-          >
-            <span>More about me</span>
-            <ArrowRight className="w-4 h-4" />
-          </Button>
-        </div>
-      </div>
-      
-      <style jsx>{`
-        .arch-frame {
-          width: 350px;
-          height: 350px;
-          border-radius: 50% 50% 0 0;
-          overflow: hidden;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juliette Axelsson | UX Designer & Photographer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        @media (max-width: 768px) {
-          .arch-frame {
-            width: 300px;
-            height: 300px;
-          }
-        }
-      `}</style>
-    </section>
-  );
-};
 
-// Featured Case Studies Component
-const FeaturedCaseStudies = () => {
-  const projects = [
-    {
-      id: 'ecommerce-redesign',
-      year: '2025',
-      platform: 'MOBILE • WEB',
-      title: 'E-commerce App Redesign',
-      description: 'Revolutionizing the shopping experience with intuitive navigation and seamless checkout.',
-      image: '/api/placeholder/400/200'
-    },
-    {
-      id: 'health-wellness-tracker',
-      year: '2024',
-      platform: 'MOBILE',
-      title: 'Health & Wellness Tracker',
-      description: 'Personalized health journey with data visualization and motivational features.',
-      image: '/api/placeholder/400/200'
-    }
-  ];
-
-  const handleViewProject = (projectId) => {
-    console.log(`View project: ${projectId}`);
-    // Handle project navigation
-  };
-
-  return (
-    <section className="bg-background py-16 px-6 lg:px-12">
-      <h2 className="text-3xl font-bold text-center text-foreground mb-12">
-        FEATURED CASE STUDIES
-      </h2>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {projects.map((project) => (
-          <Card 
-            key={project.id}
-            className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-            onClick={() => handleViewProject(project.id)}
-          >
-            <CardContent>
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-accent font-medium">{project.year}</span>
-                <span className="text-muted-foreground text-sm">{project.platform}</span>
-              </div>
-              
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded mb-4"
-              />
-              
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                {project.title}
-              </h3>
-              
-              <p className="text-muted-foreground mb-4">
-                {project.description}
-              </p>
-              
-              <Button 
-                variant="link" 
-                className="text-accent p-0 h-auto"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleViewProject(project.id);
-                }}
-              >
-                <span>View project</span>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-// About Section Component
-const AboutSection = () => {
-  const skills = [
-    'User Experience Design',
-    'User Interface Design',
-    'User Research & Testing',
-    'Prototyping & Wireframing',
-    'Design Systems',
-    'Photography',
-    'Creative Direction',
-    'Stakeholder Management'
-  ];
-
-  return (
-    <section id="about" className="bg-secondary py-16 px-6 lg:px-12">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-3xl font-bold text-foreground mb-6">
-            About Me
-          </h2>
-          
-          <p className="text-muted-foreground mb-4">
-            With over 7 years of experience in UX design and photography, I bridge the gap between aesthetics and functionality.
-          </p>
-          
-          <p className="text-muted-foreground mb-4">
-            My approach combines human-centered design principles with a photographer's eye for detail, creating digital experiences that are both beautiful and intuitive.
-          </p>
-          
-          <p className="text-muted-foreground mb-6">
-            When I'm not designing interfaces or capturing moments, you can find me exploring nature trails or experimenting with film photography.
-          </p>
-          
-          <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-foreground">
-              Skills & Expertise
-            </h3>
-            
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
-                <Badge 
-                  key={index} 
-                  variant="secondary"
-                  className="hover:bg-secondary/80"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </div>
-        
-        <div>
-          <img
-            src="/api/placeholder/500/400"
-            alt="Juliette working"
-            className="w-full rounded-lg shadow-md"
-          />
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Contact Section Component
-const ContactSection = () => {
-  const handleContact = (type) => {
-    if (type === 'email') {
-      window.location.href = 'mailto:julietteaxelsson@hotmail.com';
-    } else if (type === 'linkedin') {
-      window.open('https://linkedin.com/in/juliette-axelsson', '_blank');
-    }
-  };
-
-  return (
-    <section className="bg-foreground py-16 px-6 lg:px-12 text-background">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-6">CONTACT ME!</h2>
-        
-        <div className="flex justify-center mb-8">
-          <div className="bg-accent p-4 rounded-full">
-            <Mail className="w-8 h-8" />
-          </div>
-        </div>
-        
-        <div className="space-y-4">
-          <p>
-            <Button
-              variant="link"
-              onClick={() => handleContact('email')}
-              className="text-background hover:text-accent text-base underline-offset-4"
-            >
-              JULIETTEAXELSSON@HOTMAIL.COM
-            </Button>
-          </p>
-          
-          <p>
-            <Button
-              variant="link"
-              onClick={() => handleContact('linkedin')}
-              className="text-background hover:text-accent text-base underline-offset-4"
-            >
-              LINKEDIN.COM/IN/JULIETTE-AXELSSON
-              <ExternalLink className="w-4 h-4" />
-            </Button>
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Footer Component
-const Footer = () => (
-  <footer className="bg-background py-8 px-6 lg:px-12 text-center text-muted-foreground border-t">
-    <p>&copy; 2023 Juliette Axelsson. All rights reserved.</p>
-  </footer>
-);
-
-// Main App Component
-const App = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-1">
-        <HeroSection />
-        <FeaturedCaseStudies />
-        <AboutSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      
-      <style jsx global>{`
         :root {
-          --background: 42 33% 96%;
-          --foreground: 30 23% 22%;
-          --card: 0 0% 100%;
-          --card-foreground: 240 6% 10%;
-          --popover: 220 14% 94%;
-          --popover-foreground: 240 6% 10%;
-          --primary: 26 35% 55%;
-          --primary-foreground: 0 0% 98%;
-          --secondary: 33 20% 86%;
-          --secondary-foreground: 240 6% 10%;
-          --muted: 220 14% 95%;
-          --muted-foreground: 240 5% 64%;
-          --accent: 26 35% 75%;
-          --accent-foreground: 240 6% 10%;
-          --destructive: 0 84% 60%;
-          --destructive-foreground: 0 0% 98%;
-          --border: 220 13% 91%;
-          --input: 220 13% 87%;
-          --ring: 220 100% 60%;
+            --background: #f5f2f0;
+            --foreground: #2d2a26;
+            --secondary: #e8e0d8;
+            --accent: #cc5f36;
+            --muted-foreground: #6b5b5b;
+            --card-bg: #ffffff;
+            --card-border: #e5ddd5;
+            --border: #d4c8c0;
         }
-        
-        body {
-          background-color: hsl(var(--background));
-          color: hsl(var(--foreground));
-          font-family: Inter, sans-serif;
-          line-height: 1.5;
-          -webkit-font-smoothing: antialiased;
-        }
-        
-        .bg-background { background-color: hsl(var(--background)); }
-        .bg-foreground { background-color: hsl(var(--foreground)); }
-        .bg-card { background-color: hsl(var(--card)); }
-        .bg-secondary { background-color: hsl(var(--secondary)); }
-        .bg-accent { background-color: hsl(var(--accent)); }
-        .bg-primary { background-color: hsl(var(--primary)); }
-        
-        .text-background { color: hsl(var(--background)); }
-        .text-foreground { color: hsl(var(--foreground)); }
-        .text-card-foreground { color: hsl(var(--card-foreground)); }
-        .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
-        .text-accent-foreground { color: hsl(var(--accent-foreground)); }
-        .text-primary-foreground { color: hsl(var(--primary-foreground)); }
-        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
-        .text-accent { color: hsl(var(--accent)); }
-        
-        .border { border-color: hsl(var(--border)); }
-        .border-b { border-bottom: 1px solid hsl(var(--border)); }
-        .border-t { border-top: 1px solid hsl(var(--border)); }
-      `}</style>
-    </div>
-  );
-};
 
-export default App;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--background);
+            padding: 1.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--foreground);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: color 0.15s ease;
+        }
+
+        .nav-button:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--secondary);
+            padding: 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .arch-frame {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            border-radius: 50% 50% 0 0;
+            overflow: visible;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .arch-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .juliette-text {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--accent);
+            z-index: 10;
+        }
+
+        .hero h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        .hero-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.15s ease;
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Featured Case Studies */
+        .case-studies {
+            background: var(--background);
+            padding: 4rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .case-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .case-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .case-year {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .case-platform {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        .case-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .view-project-button {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--secondary);
+            padding: 4rem 1.5rem;
+        }
+
+        .about-content {
+            max-width: 56rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .about p {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .skills {
+            margin-top: 1.5rem;
+        }
+
+        .skills h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-badge {
+            background: var(--background);
+            color: var(--foreground);
+            padding: 0.25rem 0.625rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--foreground);
+            color: var(--background);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            background: var(--accent);
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-button {
+            background: none;
+            border: none;
+            color: var(--background);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.15s ease;
+        }
+
+        .contact-button:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--background);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--muted-foreground);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            header {
+                padding: 1.5rem 3rem;
+            }
+
+            .hero, .case-studies, .about, .contact {
+                padding: 4rem 3rem;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .juliette-text {
+                font-size: 8rem;
+            }
+
+            footer {
+                padding: 2rem 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .arch-frame {
+                width: 300px;
+                height: 300px;
+            }
+
+            .juliette-text {
+                font-size: 4rem;
+            }
+
+            .hero h2 {
+                font-size: 1.875rem;
+            }
+
+            nav {
+                gap: 1rem;
+            }
+
+            .nav-button {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+
+        /* Arrow Icon */
+        .arrow-right {
+            width: 1rem;
+            height: 1rem;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .mail-icon {
+            width: 2rem;
+            height: 2rem;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">UX DESIGNER & PHOTOGRAPHER</div>
+        <nav>
+            <button class="nav-button">CV</button>
+            <button class="nav-button">LINKEDIN</button>
+            <button class="nav-button">E-MAIL</button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="arch-frame">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b898?w=400&h=400&fit=crop&crop=face" alt="Juliette Axelsson">
+                    <h1 class="juliette-text">JULIETTE</h1>
+                </div>
+                <h2>AXELSSON</h2>
+                <p class="subtitle">UX Designer & Photographer</p>
+            </div>
+            <div class="hero-bottom">
+                <p class="tagline">I refine, I relate</p>
+                <button class="cta-button">
+                    <span>More about me</span>
+                    <svg class="arrow-right" viewBox="0 0 24 24">
+                        <path d="M5 12h14"></path>
+                        <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Featured Case Studies -->
+        <section class="case-studies">
+            <h2 class="section-title">FEATURED CASE STUDIES</h2>
+            <div class="case-studies-grid">
+                <div class="case-card">
+                    <div class="case-header">
+                        <span class="case-year">2025</span>
+                        <span class="case-platform">MOBILE • WEB</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="E-commerce App Redesign" class="case-image">
+                    <h3 class="case-title">E-commerce App Redesign</h3>
+                    <p class="case-description">Revolutionizing the shopping experience with intuitive navigation and seamless checkout.</p>
+                    <button class="view-project-button">
+                        <span>View project</span>
+                        <svg class="arrow-right" viewBox="0 0 24 24">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-header">
+                        <span class="case-year">2024</span>
+                        <span class="case-platform">MOBILE</span>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=200&fit=crop" alt="Health & Wellness Tracker" class="case-image">
+                    <h3 class="case-title">Health & Wellness Tracker</h3>
+                    <p class="case-description">Personalized health journey with data visualization and motivational features.</p>
+                    <button class="view-project-button">
+                        <span>View project</span>
+                        <svg class="arrow-right" viewBox="0 0 24 24">
+                            <path d="M5 12h14"></path>
+                            <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="about-content">
+                <div>
+                    <h2>About Me</h2>
+                    <p>With over 7 years of experience in UX design and photography, I bridge the gap between aesthetics and functionality.</p>
+                    <p>My approach combines human-centered design principles with a photographer's eye for detail, creating digital experiences that are both beautiful and intuitive.</p>
+                    <p>When I'm not designing interfaces or capturing moments, you can find me exploring nature trails or experimenting with film photography.</p>
+                    
+                    <div class="skills">
+                        <h3>Skills & Expertise</h3>
+                        <div class="skills-list">
+                            <span class="skill-badge">User Experience Design</span>
+                            <span class="skill-badge">User Interface Design</span>
+                            <span class="skill-badge">User Research & Testing</span>
+                            <span class="skill-badge">Prototyping & Wireframing</span>
+                            <span class="skill-badge">Design Systems</span>
+                            <span class="skill-badge">Photography</span>
+                            <span class="skill-badge">Creative Direction</span>
+                            <span class="skill-badge">Stakeholder Management</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&h=400&fit=crop" alt="Juliette working">
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <div>
+                <h2>CONTACT ME!</h2>
+                <div class="contact-icon">
+                    <svg class="mail-icon" viewBox="0 0 24 24">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                </div>
+                <div class="contact-links">
+                    <p><button class="contact-button">JULIETTEAXELSSON@HOTMAIL.COM</button></p>
+                    <p><button class="contact-button">LINKEDIN.COM/IN/JULIETTE-AXELSSON</button></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2023 Juliette Axelsson. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple scroll to about section functionality
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Contact button functionality
+        document.querySelector('.contact-button').addEventListener('click', function() {
+            window.location.href = 'mailto:julietteaxelsson@hotmail.com';
+        });
+
+        document.querySelectorAll('.contact-button')[1].addEventListener('click', function() {
+            window.open('https://linkedin.com/in/juliette-axelsson', '_blank');
+        });
+    </script>
+</body>
+</html>
